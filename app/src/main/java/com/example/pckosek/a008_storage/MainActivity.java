@@ -9,7 +9,7 @@ import android.util.Log;
 public class MainActivity extends AppCompatActivity {
 
     /* ------------------------*/
-    /*    FILE VERSION 1.0     */
+    /*    FILE VERSION 2.0     */
     /* ------------------------*/
 
     private final static String TAG = "MainActivity";
@@ -26,9 +26,15 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_FILE,Context.MODE_PRIVATE);
 
         int defaultInt = 0;
-        int numCounts = sharedPref.getInt(COUNT_KEY, 0);
+        int numCounts = sharedPref.getInt(COUNT_KEY, defaultInt);
         Log.i(TAG, "NumCounts: "+numCounts);
 
+
+        numCounts++;
+
+        SharedPreferences.Editor prefsEditor = sharedPref.edit();
+        prefsEditor.putInt(COUNT_KEY,numCounts);
+        prefsEditor.commit();
 
     }
 }
